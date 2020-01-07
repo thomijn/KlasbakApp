@@ -1,21 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react'
 import CanvasModel from './Canvas';
-import { Typography, Grid, Button } from "@material-ui/core"
+import { Grid, Button } from "@material-ui/core"
+import Title from './Title';
+
 const CanvasContainer = () => {
-    const style = {
-        textAlign: "center",
-    }
+    const [backside, setBackside] = useState(false)
 
     return (
         <div>
-            <Grid container style={{ marginTop: "10em", position: "absolute" }} justify="center">
+            <Grid container style={{ marginTop: "22em", position: "absolute", zIndex: "2", textAlign: "center" }} justify="center">
                 <Grid item xs={4}>
-                    <Button variant='contained'>
-                        Backside
+                    <Button onClick={() => setBackside(!backside)} variant='outlined' size="large">
+                        Achterkant
                     </Button>
                 </Grid>
             </Grid>
-            < CanvasModel />
+            <Title />
+            < CanvasModel backside={backside} />
         </div>
     )
 }

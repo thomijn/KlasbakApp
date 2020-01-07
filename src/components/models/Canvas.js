@@ -44,9 +44,9 @@ const Arduino = () => {
 
 
 const Plane = () => (
-  <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0, 0]} receiveShadow>
-    <planeBufferGeometry attach="geometry" args={[100, 100]} />
-    <meshPhysicalMaterial attach="material" color="white" />
+  <mesh rotation={[-Math.PI / 2, 0, 0]} position={[1, 0, 0]} receiveShadow>
+    <circleBufferGeometry attach="geometry" args={[5, 100]} />
+    <meshPhysicalMaterial attach="material" color="#57ab4f" />
   </mesh>
 )
 
@@ -58,7 +58,7 @@ function Lit({ hover }) {
   })
 
   const props2 = useSpring({
-    position: !hover ? [0, 1.15, 0] : [0, 1.2, 0]
+    position: !hover ? [0, 1.15, 0] : [0, 1.3, 0]
   })
 
   return (
@@ -66,19 +66,29 @@ function Lit({ hover }) {
       position={props2.position}
       rotation={props.rotation}
     >
-      <boxBufferGeometry attach="geometry" args={[1, 0.1, 1,]} />
+      <boxBufferGeometry attach="geometry" args={[1.2, 0.2, 1.2]} />
       <meshStandardMaterial map={texture} attach="material" />
     </a.mesh>
   )
 }
 
-function Dolly({ positionZ, positionX, positionY }) {
+function Dolly({ positionZ, positionX, positionY, backside }) {
   useFrame(({ camera }) => {
     camera.position.z = camera.position.z += (positionZ - camera.position.z) * 0.05
     camera.position.x = camera.position.x += (positionX - camera.position.x) * 0.05
     camera.position.y = camera.position.y += (positionY - camera.position.y) * 0.05
 
-    // camera.rotation.y = camera.rotation.y += (positionX - camera.rotation.y) * 0.05
+    if (backside) {
+      camera.rotation.y = camera.rotation.y += (3.15 - camera.rotation.y) * 0.04
+      camera.position.z = camera.position.z += (-14 - camera.position.z) * 0.04
+      camera.position.y = camera.position.y += (0.5 - camera.position.y) * 0.04
+
+    } else {
+      camera.rotation.y = camera.rotation.y += (0 - camera.rotation.y) * 0.02
+      camera.position.z = camera.position.z += (positionZ - camera.position.z) * 0.02
+      camera.position.y = camera.position.y += (positionY - camera.position.y) * 0.02
+    }
+
     camera.updateProjectionMatrix()
   })
   return null
@@ -103,15 +113,17 @@ function Thing({ position, setPositionZ, setPositionX, setPositionY, positionX }
         <Lit hover={hover} />
       </Suspense>
       <boxBufferGeometry attach="geometry" args={[1, 2.25, 1]} />
-      <meshStandardMaterial map={texture} attach="material" />
+      <meshPhysicalMaterial map={texture} attach="material" />
     </mesh>
   )
 }
 
-const CanvasModel = () => {
+const CanvasModel = ({ backside }) => {
   const [positionZ, setPositionZ] = useState(6)
   const [positionX, setPositionX] = useState(1)
   const [positionY, setPositionY] = useState(3)
+
+  const [backsideCamera, setBacksideCamera] = useState([0, 0, 0])
 
   return (
     <Canvas
@@ -121,32 +133,32 @@ const CanvasModel = () => {
         gl.shadowMap.type = THREE.PCFSoftShadowMap
       }}
     >
-      {/* <Dolly positionZ={positionZ} positionX={positionX} positionY={positionY} /> */}
+      <Dolly backside={backside} positionZ={positionZ} positionX={positionX} positionY={positionY} />
       <ambientLight intensity={1} />
-      <spotLight position={[15, 15, 5]} penumbra={1} castShadow />
-      <fog attach="fog" args={["white", 20, 50]} />
+      <spotLight position={[10, 10, 10]} penumbra={2} castShadow />
+      {/* <fog attach="fog" args={["white", 5, 10]} /> */}
       {/* <Controls /> */}
       <Suspense fallback={null}>
         <Thing
           setPositionZ={(positionZ) => setPositionZ(positionZ)}
           setPositionX={(positionX) => setPositionX(positionX)}
           setPositionY={(positionY) => setPositionY(positionY)}
-          positionX={0}
-          position={[0, 1, 1]}
+          positionX={-0.5}
+          position={[-0.5, 1, 1]}
         />
         <Thing
           setPositionZ={(positionZ) => setPositionZ(positionZ)}
           setPositionX={(positionX) => setPositionX(positionX)}
           setPositionY={(positionY) => setPositionY(positionY)}
           positionX={1}
-          position={[1.1, 1, 1]}
+          position={[1, 1, 1]}
         />
         <Thing
           setPositionZ={(positionZ) => setPositionZ(positionZ)}
           setPositionX={(positionX) => setPositionX(positionX)}
           setPositionY={(positionY) => setPositionY(positionY)}
-          positionX={2}
-          position={[2.2, 1, 1]}
+          positionX={2.5}
+          position={[2.5, 1, 1]}
         />
       </Suspense>
       <Suspense fallback={null}>
