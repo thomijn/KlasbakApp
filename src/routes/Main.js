@@ -1,6 +1,6 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import CanvasContainer from "../components/models/CanvasContainer"
+import CanvasContainer from "../components/CanvasContainer"
 
 const Main = () => {
     return (
