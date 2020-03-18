@@ -1,15 +1,15 @@
 import React from 'react'
 import CanvasModel from './Canvas';
 
-import BinCard from './BinCard';
 import InfoCard from './InfoCard';
+import Game from './Game';
 
 const CanvasContainer = () => {
     return (
         <div>
-            <BinCard />
             <InfoCard />
-            < CanvasModel />
+            <Game />
+            <CanvasModel />
         </div>
     )
 }

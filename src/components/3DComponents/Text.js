@@ -22,7 +22,7 @@ export default function ({ children, vAlign = 'center', hAlign = 'center', size 
         <group {...props} scale={[0.1 * size, 0.1 * size, 0.1]}>
             <mesh ref={mesh} castShadow>
                 <textGeometry attach="geometry" args={[children, config]} />
-                <meshPhongMaterial attach="material" />
+                <meshPhongMaterial attach="material" color='#7ab0c4' />
             </mesh>
         </group>
     )

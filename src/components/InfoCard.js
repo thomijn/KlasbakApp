@@ -50,10 +50,7 @@ const InfoCard = () => {
                                     <Grid container style={{ textAlign: "center" }} justify="center">
                                         <Grid item xs={10}>
                                             <Typography variant="body1">
-                                                Ons concept biedt een platform aan voor basisscholen om hun resultaten bij te houden en te
-    delen met soortgenoten. Door middel van slimme prullenbakken wordt er data verzameld
-    om de scores te berekenen. Deze gegevens worden vervolgens naar het online platform
-    gestuurd waaruit een ranking bepaalt wordt.
+                                                Do duis anim excepteur excepteur et sit anim officia veniam. Magna cillum tempor excepteur velit eiusmod laborum adipisicing nostrud ea. Sit deserunt nulla in laborum. Incididunt sunt laboris laborum ad consectetur sunt ex mollit fugiat. Exercitation id eu pariatur est culpa. Esse nisi do aute amet nisi do fugiat ullamco tempor qui amet officia dolore sit. Aliquip fugiat aliqua consectetur pariatur id non commodo.
                                             </Typography>
                                         </Grid>
                                     </Grid>
