@@ -10,7 +10,6 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.2.1",
     "dotenv": "^8.2.0",
-    "gltfjsx": "^1.0.10",
     "react": "0.0.0-experimental-f42431abe",
     "react-dom": "0.0.0-experimental-f42431abe",
     "react-icons": "^3.8.0",

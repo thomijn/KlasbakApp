@@ -1,6 +1,6 @@
 import React from 'react'
 import { Card, CardContent, CardHeader, Grid, makeStyles, IconButton, Typography } from '@material-ui/core'
-import CloseIcon from '@material-ui/icons/Close';
+// import CloseIcon from '@material-ui/icons/Close';
 import { useStore } from '../store';
 import { useSpring, a } from 'react-spring';
 
@@ -38,13 +38,13 @@ const InfoCard = () => {
                                 <CardHeader
                                     align="center"
                                     title="Info"
-                                    action={
-                                        <IconButton onClick={() => {
-                                            setPage("home")
-                                        }} aria-label="settings">
-                                            <CloseIcon />
-                                        </IconButton>
-                                    }
+                                    // action={
+                                    //     <IconButton onClick={() => {
+                                    //         setPage("home")
+                                    //     }} aria-label="settings">
+                                    //         <CloseIcon />
+                                    //     </IconButton>
+                                    // }
                                 />
                                 <CardContent>
                                     <Grid container style={{ textAlign: "center" }} justify="center">
